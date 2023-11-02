@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_test/dialog/task_dialog.dart';
+import 'package:flutter_provider_test/todo/widget/task_dialog.dart';
 import 'package:flutter_provider_test/model/task_model.dart';
 import 'package:flutter_provider_test/services/firestore_service.dart';
 

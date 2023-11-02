@@ -11,10 +11,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => TodoViewModel()),
-
-    ],
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => TodoViewModel()),
+      ],
       child: const MyApp(),
     ),
   );
