@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_test/model/task_model.dart';
-import 'package:flutter_provider_test/todo/todo_view_model.dart';
+import 'package:flutter_provider_test/ui/todo/todo_view_model.dart';
 import 'package:provider/provider.dart';
 
 class TaskDialog extends StatefulWidget {

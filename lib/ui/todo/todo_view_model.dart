@@ -1,16 +1,15 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_test/model/task_model.dart';
-import 'package:flutter_provider_test/services/auth_service.dart';
 import 'package:flutter_provider_test/services/dialog_service.dart';
 import 'package:flutter_provider_test/services/firestore_service.dart';
 
 class TodoViewModel with ChangeNotifier {
   final DialogService dialogService = DialogService();
   final FirebaseService firebaseService = FirebaseService();
-  final AuthService authService = AuthService();
 
   TimeOfDay? time;
   String? selectedTime;
@@ -71,7 +70,7 @@ class TodoViewModel with ChangeNotifier {
         TaskModel taskModel = TaskModel(
             task: taskText,
             date: selectedTime!,
-            uId: authService.user?.uid ?? "abac");
+            uId: FirebaseAuth.instance.currentUser?.uid ?? "abac");
         if (await firebaseService.addTask(taskModel)) {
           if (context.mounted) {
             Navigator.of(context).pop();
