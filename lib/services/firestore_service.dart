@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_provider_test/model/task_model.dart';
 import 'package:flutter_provider_test/model/user_model.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_provider_test/services/auth_service.dart';
 
 class FirebaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-
+  User? currentUser = FirebaseAuth.instance.currentUser;
   final CollectionReference images =
       FirebaseFirestore.instance.collection('Images');
   final AuthService _auth = AuthService();
@@ -24,10 +25,10 @@ class FirebaseService {
 
   addImage(String url) async {
     try {
-      DocumentReference doc = images.doc(_auth.currentUser()!.uid);
+      DocumentReference doc = images.doc(currentUser!.uid);
       UserModel userModel = UserModel(
           id: doc.id,
-          email: _auth.currentUser()!.email ?? "email is null",
+          email: currentUser!.email ?? "email is null",
           imageUrl: url);
       await doc.set(userModel.toMap());
       return true;

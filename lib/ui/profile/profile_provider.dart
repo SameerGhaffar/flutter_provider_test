@@ -54,17 +54,30 @@ class ProfileProvider extends ChangeNotifier {
 
   SingleProfileData? singleProfileData ;
 
+  singleUserNotFound() async {
+    print("Single user not found ");
+    http.Response response = await http
+        .get(Uri.parse('https://reqres.in/api/users/23'));
+
+    if(response.statusCode ==404){
+      print("got response & response code is ${response.statusCode}");
+      notifyListeners();
+    }else{
+      print("else");
+    }
+  }
+
   getSingleProfileFromApi() async {
-    print("get single api ");
+   print("Single Profile data is loading ");
     http.Response response = await http
         .get(Uri.parse('https://reqres.in/api/users/2'));
-    print("get data ");
+
 
     if(response.statusCode ==200){
       var data = jsonDecode(response.body.toString());
-      print("data == $data");
+
       singleProfileData = SingleProfileData.fromJson(data);
-      print(singleProfileData!.data.email);
+
       notifyListeners();
     }else{
       print("else");

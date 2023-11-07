@@ -18,7 +18,9 @@ class _SingleProfileViewState extends State<SingleProfileView> {
     super.initState();
 
     providerData = context.read<ProfileProvider>();
+    providerData.singleUserNotFound();
     providerData.getSingleProfileFromApi();
+
   }
 
   @override
@@ -26,10 +28,19 @@ class _SingleProfileViewState extends State<SingleProfileView> {
     return Scaffold(
         appBar: AppBar(title: const Text("Single Profile from Api")),
         body: Consumer<ProfileProvider>(
-          builder: (BuildContext context,data, Widget? child) {
-            providerData=data;
-            return  providerData.singleProfileData == null ? const Center(child: CircularProgressIndicator()): Center(child: buildCard(providerData.singleProfileData!.data));
-
+          builder: (BuildContext context, data, Widget? child) {
+            providerData = data;
+            return Column(
+              children: [
+                providerData.singleProfileData == null
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Center(
+                        child: buildCard(providerData.singleProfileData!.data),
+                      ),
+              ],
+            );
           },
         ));
   }
