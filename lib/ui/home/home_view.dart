@@ -30,6 +30,7 @@ class _HomeViewState extends State<HomeView> {
                       ));
                 },
                 name: "TODO"),
+            Text("Todo App"),
             button(
               onPressed: () {
                 Navigator.push(
@@ -40,6 +41,7 @@ class _HomeViewState extends State<HomeView> {
               },
               name: "Profile",
             ),
+            Text("Profile > Data coming from Get Api's"),
             button(
               onPressed: () {
                 Navigator.push(
@@ -50,6 +52,7 @@ class _HomeViewState extends State<HomeView> {
               },
               name: "SingleProfile",
             ),
+            Text("Single profile data coming from api"),
           ],
         ),
       ),

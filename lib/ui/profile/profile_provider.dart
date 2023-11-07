@@ -83,4 +83,17 @@ class ProfileProvider extends ChangeNotifier {
       print("else");
     }
   }
+
+  deleteApi() async {
+    http.Response response = await http.delete(
+      Uri.parse("https://reqres.in/api/users/2"),
+    );
+
+    if(response.statusCode ==204){
+      print("Delete Successfully");
+    }else{
+      print("Delete Request Failed");
+    }
+  }
+
 }

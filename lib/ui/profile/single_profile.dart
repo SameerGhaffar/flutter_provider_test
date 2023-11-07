@@ -18,7 +18,8 @@ class _SingleProfileViewState extends State<SingleProfileView> {
     super.initState();
 
     providerData = context.read<ProfileProvider>();
-    providerData.singleUserNotFound();
+    // commented code is used to request where user will not be foud and give status code.....
+    //providerData.singleUserNotFound();
     providerData.getSingleProfileFromApi();
 
   }
@@ -39,6 +40,8 @@ class _SingleProfileViewState extends State<SingleProfileView> {
                     : Center(
                         child: buildCard(providerData.singleProfileData!.data),
                       ),
+
+                ElevatedButton(onPressed: ()=>providerData.deleteApi(), child: const Text("Delete"),),
               ],
             );
           },
